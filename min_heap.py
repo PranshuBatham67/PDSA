@@ -47,6 +47,11 @@ class minHeap:
             self.min_heapify(0)
         return item
 
+  def heapsort(self,  L):
+        build_min_heap(L)
+        for i in range(len(self.A), -1, -1):
+            (A[0], A[-1]) = (A[-1], A[0])
+            self.min_heapify(0)
         
         
         

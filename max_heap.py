@@ -58,7 +58,12 @@ class maxHeap:
         
         return item
         
-        
+
+    def heapsort(self, L):
+        self.build_max_heap(L)
+        for i in range(len(self.A), -1, -1):
+            (A[0], A[-1]) = (A[-1], A[0])
+            self.maxheapify(0)
         
         
         

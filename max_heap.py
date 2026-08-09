@@ -2,7 +2,7 @@ class maxHeap:
     def __init__(self):
         self.A = []
         
-    def heapify(self, ele_idx):
+    def max_heapify(self, ele_idx):
         left_cld = 2*ele_idx + 1
         right_cld = 2*ele_idx + 2
         largest = ele_idx #initially ele_idx is my largest value
@@ -30,7 +30,7 @@ class maxHeap:
             self.heapify(k)
             
     
-    def insert(self, ele):
+    def max_heap_insert(self, ele):
         #step1: append ele in last
         self.A.append(ele)
         #step2: last idx of array
@@ -45,7 +45,7 @@ class maxHeap:
             else:
                 break
         
-    def delete(self, ele): # Need to return element which we delete
+    def max_heap_delete(self, ele): # Need to return element which we delete
         # In deletion we delete the first element means element at the first idx
         item = None
         if self.A != []:

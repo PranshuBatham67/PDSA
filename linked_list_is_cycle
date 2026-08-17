@@ -1,0 +1,62 @@
+# Define the node class
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+# Define the linked list class
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Function to add a node at the end
+    def add(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+        return new_node  # Return the new node for cycle creation
+
+    # Function to create a cycle by linking last node to a node at position 'pos' (0-based)
+    def create_cycle(self, pos):
+        if self.head is None:
+            return
+        current = self.head
+        cycle_node = None
+        index = 0
+        while current.next:
+            if index == pos:
+                cycle_node = current
+            current = current.next
+            index += 1
+        if cycle_node:
+            current.next = cycle_node  # Create cycle
+
+    # Function to detect cycle using Floyd's Cycle detection algorithm
+    # fast and slow pointer pattern
+    def has_cycle(self):
+        slow = self.head
+        fast = self.head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
+
+# Example usage
+ll = LinkedList()
+ll.add(10)
+node1 = ll.add(20)
+ll.add(30)
+ll.add(40)
+
+# Create a cycle: last node points to node at position 1 (node with data=20)
+ll.create_cycle(1)
+
+# Detect cycle
+print("Cycle detected:" if ll.has_cycle() else "No cycle detected.")

@@ -1,0 +1,82 @@
+class Node:
+    """Represents a node in the linked list."""
+    
+    def __init__(self, data=None):
+        """Initializes a node with the given data."""
+        
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    """Represents a linked list."""
+    
+    def __init__(self):
+        """Initializes an empty linked list."""
+        
+        self.head = None
+
+    def append(self, data):
+        """Appends a new node with the given data to the end of the linked list."""
+        
+        if not self.head:
+            self.head = Node(data)
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = Node(data)
+
+    def print_list(self):
+        """Prints the elements of the linked list."""
+        
+        current = self.head
+        while current:
+            print(current.data, end=" ")
+            current = current.next
+        print()
+        
+    
+    def mult(self,l1,l2):
+        dummy = Node(0)
+        curr1 = l1.head
+        curr2 = l2.head
+        curr = dummy
+        
+        while curr1 is not None:
+            prod = curr1.data * curr2.data
+            curr.next = Node(prod)
+            prev = curr.next
+            if len(str(prev.data)) == 2:
+                
+                carry = prev.data // 10
+                prev.data = prev.data % 10
+                curr.data += carry
+            
+            curr1 = curr1.next
+            curr = curr.next
+        return dummy.next
+        
+
+
+# Create a linked list of length 3
+ll1 = LinkedList()
+ll1.append(1)
+ll1.append(2)
+ll1.append(3)
+
+# Create a linked list of length 1
+ll2 = LinkedList()
+ll2.append(5)
+
+l3 = LinkedList()
+l3.head = l3.mult(ll1, ll2)
+l3.print_list()
+
+# Print the linked lists
+print("Linked List 1:")
+ll1.print_list()
+
+print("Linked List 2:")
+ll2.print_list()
+
